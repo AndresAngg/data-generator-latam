@@ -1,27 +1,113 @@
 export const countries = [
-
+    
     {
         country: "Colombia",
         city: "Bogotá",
         language: "Español"
     },
-
+    {
+        country: "México",
+        city: "Ciudad de México",
+        language: "Español"
+    },
+    {
+        country: "Argentina",
+        city: "Buenos Aires",
+        language: "Español"
+    },
+    {
+        country: "Chile",
+        city: "Santiago",
+        language: "Español"
+    },
+    {
+        country: "Perú",
+        city: "Lima",
+        language: "Español"
+    },
     {
         country: "Brasil",
-        city: "Sao Paulo",
+        city: "São Paulo",
         language: "Portugués"
     },
-
+    {
+        country: "Portugal",
+        city: "Lisboa",
+        language: "Portugués"
+    },
     {
         country: "Estados Unidos",
         city: "Miami",
         language: "Inglés"
     },
-
+    {
+        country: "Canadá",
+        city: "Toronto",
+        language: "Inglés"
+    },
+    {
+        country: "Reino Unido",
+        city: "Londres",
+        language: "Inglés"
+    },
     {
         country: "Francia",
-        city: "Paris",
+        city: "París",
         language: "Francés"
+    },
+    {
+        country: "Bélgica",
+        city: "Bruselas",
+        language: "Francés"
+    },
+    {
+        country: "Alemania",
+        city: "Berlín",
+        language: "Alemán"
+    },
+    {
+        country: "Italia",
+        city: "Roma",
+        language: "Italiano"
+    },
+    {
+        country: "Países Bajos",
+        city: "Ámsterdam",
+        language: "Neerlandés"
+    },
+    {
+        country: "Suecia",
+        city: "Estocolmo",
+        language: "Sueco"
+    },
+    {
+        country: "Noruega",
+        city: "Oslo",
+        language: "Noruego"
+    },
+    {
+        country: "Japón",
+        city: "Tokio",
+        language: "Japonés"
+    },
+    {
+        country: "Corea del Sur",
+        city: "Seúl",
+        language: "Coreano"
+    },
+    {
+        country: "China",
+        city: "Pekín",
+        language: "Mandarín"
+    },
+    {
+        country: "India",
+        city: "Nueva Delhi",
+        language: "Hindi"
+    },
+    {
+        country: "Australia",
+        city: "Sídney",
+        language: "Inglés"
     }
-
 ];

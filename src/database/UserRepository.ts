@@ -5,7 +5,7 @@ export class UserRepository {
 
     private db = Database.getInstance();
 
-    save(user: Person): Promise<void> {
+    saveUser(user: Person): Promise<void> {
 
         return new Promise((resolve, reject) => {
 
@@ -46,6 +46,32 @@ export class UserRepository {
 
     }
 
+    async save(users: Person[]): Promise<void> {
+
+        const total = users.length;
+        let saved = 0;
+
+        const chunkSize = Math.max(1, Math.floor(total / 5));
+
+        for (let i = 0; i < total; i += chunkSize) {
+
+            const chunk = users.slice(i, i + chunkSize);
+
+            await Promise.all(
+                chunk.map(u =>
+                    this.saveUser(u).catch(err => {
+                        console.error("Error saving:", err);
+                        throw err;
+                    })
+                )
+            );
+
+            saved += chunk.length;
+            console.log(`Saved ${Math.min(saved, total)}/${total}`);
+
+        }
+
+    }
     getAll(): Promise<any[]> {
 
         return new Promise((resolve, reject) => {

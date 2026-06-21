@@ -1,9 +1,12 @@
 import { DataGeneratorService } from "./src/services/DataGeneratorService";
 import { UserRepository } from "./src/database/UserRepository";
 import { CsvExportService } from "./src/services/CsvExportService";
+import { EmailService } from "./src/services/EmailService";
+import dotenv from "dotenv";
 
 async function main() {
 
+    dotenv.config();
     const action = process.argv[2];
     const repository = new UserRepository();
 
@@ -14,14 +17,15 @@ async function main() {
             const generator = new DataGeneratorService();
             const users = generator.generateUsers(quantity);
 
-            for (const user of users) {
-                await repository.save(user);
-            }
+            await repository.save(users);
 
             const csv = new CsvExportService();
             await csv.export(users);
 
+            const emailService = new EmailService();
+
             console.log(`${quantity} usuarios generados`);
+            await emailService.sendCsv();
 
             break;
 
