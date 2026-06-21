@@ -1,7 +1,5 @@
 export abstract class Person {
-
     private _document: string;
-
     constructor(
         public name: string,
         public lastName: string,
@@ -11,9 +9,7 @@ export abstract class Person {
         public country: string,
         public language: string
     ) {
-
         this._document = document;
-
     }
 
     public get document(): string {
@@ -21,5 +17,4 @@ export abstract class Person {
     }
 
     abstract generateDocument(): string;
-
 }

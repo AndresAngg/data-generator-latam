@@ -2,107 +2,67 @@ import { Person } from "../models/Person";
 import { PersonFactory } from "../factories/PersonFactory";
 
 export class DataGeneratorService {
+  private usedDocuments = new Set<string>();
+  private usedNames = new Set<string>();
 
-    private usedDocuments = new Set<string>();
+  generateUsers(quantity: number): Person[] {
+    const users: Person[] = [];
+    while (users.length < quantity) {
+      const isCompany = Math.random() < 0.3;
+      let user: Person;
+      const age = this.randomAge();
 
-    private usedNames = new Set<string>();
+      if (isCompany) {
+        const document = this.generateCompanyDocument();
+        user = PersonFactory.createCompany(document, age);
+      } else {
 
-    generateUsers(quantity: number): Person[] {
+        const document = this.generatePersonDocument(age);
+        user = PersonFactory.createNaturalPerson(document, age);
+      }
 
-        const users: Person[] = [];
+      const fullName = `${user.name}-${user.lastName}`;
 
-        while (users.length < quantity) {
+      if (this.usedNames.has(fullName)) continue;
 
-            const isCompany = Math.random() < 0.3;
+      this.usedNames.add(fullName);
+      users.push(user);
+    }
+    return users;
+  }
 
-            let user: Person;
-            const age = this.randomAge();
+  private randomAge(): number {
+    return Math.floor(Math.random() * (79 - 11 + 1)) + 11;
+  }
 
-            if (isCompany) {
+  private generateCompanyDocument(): string {
+    let document: string;
 
-                const document = this.generateCompanyDocument();
-                user = PersonFactory.createCompany(document, age);
+    do {
+      document = "9" + Math.floor(10000000 + Math.random() * 90000000);
+    } while (this.usedDocuments.has(document));
 
-            } else {
+    this.usedDocuments.add(document);
+    return document;
+  }
 
-                const document = this.generatePersonDocument(age);
+  private generatePersonDocument(age: number): string {
+    let document: string;
+    do {
 
-                user = PersonFactory.createNaturalPerson(document, age);
+      if (age < 18) {
+        document = String(11000000 + Math.floor(Math.random() * 100000));
 
-            }
-
-            const fullName =
-                `${user.name}-${user.lastName}`;
-
-            if (this.usedNames.has(fullName))
-                continue;
-
-            this.usedNames.add(fullName);
-
-            users.push(user);
-
+      } else {
+        const digits = Math.floor(Math.random() * 3) + 9;
+        document = "";
+        for (let i = 0; i < digits; i++) {
+          document += Math.floor(Math.random() * 10);
         }
-
-        return users;
-
-    }
-
-    private randomAge(): number {
-
-        return Math.floor(Math.random() * (79 - 11 + 1)) + 11;
-
-    }
-
-    private generateCompanyDocument(): string {
-
-        let document: string;
-
-        do {
-
-            document = "9" + Math.floor(10000000 + Math.random() * 90000000);
-
-        } while (
-            this.usedDocuments.has(document)
-        );
-
-        this.usedDocuments.add(document);
-
-        return document;
-
-    }
-
-    private generatePersonDocument(age: number): string {
-
-        let document: string;
-
-        do {
-
-            if (age < 18) {
-
-                document = String(11000000 + Math.floor(Math.random() * 100000));
-
-            } else {
-
-                const digits = Math.floor(Math.random() * 3) + 9;
-
-                document = "";
-
-                for (let i = 0; i < digits; i++) {
-
-                    document += Math.floor(Math.random() * 10);
-
-                }
-
-            }
-
-        } while (
-            this.usedDocuments.has(document)
-        );
-
-        this.usedDocuments.add(document);
-
-        return document;
-
-    }
-
+      }
+    } while (this.usedDocuments.has(document));
+    
+    this.usedDocuments.add(document);
+    return document;
+  }
 }
