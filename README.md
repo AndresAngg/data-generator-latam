@@ -26,11 +26,9 @@ npm install
 
 Para ejecutar la generación de datos:
 ```bash
-npm start
-```
-o según configuración:
-```bash
-node index.js
+npm run start generate 100
+npm run start list
+npm run start clean
 ```
 
 ## 📤 Salida de datos
@@ -41,11 +39,34 @@ Los datos generados se almacenan en:
 
 o en la ruta configurada en el proyecto.
 
-## 🔗 Relación con otros proyectos
+## 📧 Configuración de envío de correo
 
-Este proyecto alimenta los datos utilizados por:
+Este proyecto incluye envío automático de correo con los resultados o datos generados.
 
-latam-automation
-👨‍💻 Notas
-Asegurarse de ejecutar este proyecto antes de correr las pruebas automatizadas.
-Los datos pueden ser sobrescritos en cada ejecución.
+Para habilitar esta funcionalidad es necesario configurar variables de entorno.
+
+## 🔐 Variables de entorno
+
+El proyecto utiliza un archivo .env para manejar credenciales sensibles.
+
+Se incluye un archivo de ejemplo:
+
+.env.example
+
+Debes copiarlo y crear tu propio .env:
+```bash
+cp .env.example .env
+```
+## 📌 Variables requeridas
+```
+EMAIL_USER=tu_correo@gmail.com
+EMAIL_PASS=tu_contraseña_o_app_password
+EMAIL_TO=destinatario@empresa.com
+```
+
+🧠 Ejemplo de configuración
+```
+EMAIL_USER=miusuario@gmail.com
+EMAIL_PASS=abcd efgh ijkl mnop
+EMAIL_TO=qa-team@latam.com
+```
