@@ -29,20 +29,11 @@ Para ejecutar la generación de datos:
 npm start
 ```
 o según configuración:
-
+```bash
 node index.js
-📁 Estructura del proyecto
-data-generator-latam/
-│
-├── src/
-│   ├── generators/
-│   ├── data/
-│   └── utils/
-│
-├── index.js
-├── package.json
-└── README.md
-📤 Salida de datos
+```
+
+## 📤 Salida de datos
 
 Los datos generados se almacenan en:
 
@@ -50,7 +41,7 @@ Los datos generados se almacenan en:
 
 o en la ruta configurada en el proyecto.
 
-🔗 Relación con otros proyectos
+## 🔗 Relación con otros proyectos
 
 Este proyecto alimenta los datos utilizados por:
 
